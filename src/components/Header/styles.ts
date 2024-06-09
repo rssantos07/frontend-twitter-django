@@ -18,7 +18,7 @@ export const Container = styled.div`
   }
 `
 
-export const Header = styled.ul`
+export const Cabecalho = styled.ul`
   z-index:2;
   position: sticky;
   top: 0;

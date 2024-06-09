@@ -1,21 +1,64 @@
-import Feed from '../Feed'
 import * as S from './styles'
 
-import { useSelector } from 'react-redux'
-import { RootReducer } from '../../store'
+interface TokenData {
+  id: number
+  username: string
+  email: string
+  full_name: string
+  bio: string
+  image: string
+  verified: boolean
+}
 
-const ProfilePage = () => {
-  const itens = useSelector((state: RootReducer) => state.tweet.itens)
-  const primeiroItem = useSelector((state: RootReducer) => state.tweet.itens[0])
-  const avatarUrl = itens.length > 0 ? itens[0].avatar : ''
-  const name = primeiroItem.name
-  const user = primeiroItem.user
+const ProfilePage = ({ username, full_name, bio, image }: TokenData) => {
+  // const [tokenData, setTokenData] = useState<TokenData | null>(null)
+
+  // useEffect(() => {
+  //   const fetchTokenData = async () => {
+  //     const token = localStorage.getItem('access_token')
+
+  //     if (!token) {
+  //       console.log('No token found')
+  //       return
+  //     }
+
+  //     try {
+  //       const response = await fetch('http://127.0.0.1:8000/api/user/', {
+  //         headers: {
+  //           'Content-Type': 'application/json',
+  //           Authorization: `Bearer ${token}`
+  //         }
+  //       })
+
+  //       if (!response.ok) {
+  //         console.log(`Error: ${response.status} ${response.statusText}`)
+  //         return
+  //       }
+
+  //       const data = await response.json()
+  //       console.log('Fetched data:', data)
+
+  //       if (Array.isArray(data) && data.length > 0) {
+  //         setTokenData(data[0].token_data)
+  //         console.log('Token Data:', data[0].token_data)
+  //       }
+  //     } catch (error) {
+  //       console.error('Error fetching user data:', error)
+  //     }
+  //   }
+
+  //   fetchTokenData()
+  // }, []) código exibir conteudo direto na página sem uso de createApi
+
   return (
     <>
       <S.Container>
         <S.Banner>
           <S.Avatar>
-            <img src={avatarUrl} alt="imagem profile" />
+            <img
+              src={'https://rssantos07.pythonanywhere.com/media/' + image}
+              alt={'Imagem de ' + username}
+            />
           </S.Avatar>
         </S.Banner>
 
@@ -23,11 +66,9 @@ const ProfilePage = () => {
           <S.EditButton type="button" title="Editar">
             Editar perfil
           </S.EditButton>
-          <h1>{name}</h1>
-          <h2>@{user}</h2>
-          <p>
-            Developer at <a href="#">@{user}</a>
-          </p>
+          <h1>{full_name}</h1>
+          <h2>@{username}</h2>
+          <p>{bio}</p>
           <ul>
             <li>
               <S.LocationIcon />
@@ -46,11 +87,10 @@ const ProfilePage = () => {
             </span>
             <span>
               {' '}
-              <strong>34 </strong>seguidores
+              seguindo <strong>0 </strong>
             </span>
           </S.Followage>
         </S.ProfileData>
-        <Feed></Feed>
       </S.Container>
     </>
   )

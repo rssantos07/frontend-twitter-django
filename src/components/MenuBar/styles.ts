@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components'
 import { cores } from '../../styles'
-import { ButtonContainer, ButtonLink } from '../Button/styles'
+import { ButtonContainer } from '../Button/styles'
 import { Close } from '../../assets/Icons'
 
 import {
@@ -15,10 +15,11 @@ import {
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  max-heigth: 100%;
-  width: 280px;
+  width: 240px;
+  height: 100vh;
   justify-content: space-between;
   align-items: center;
+  flex-shrink: 0;
 
   position: sticky;
   top: 0;
@@ -45,6 +46,7 @@ export const Topside = styled.div`
   display: flex;
   flex-direction: column;
   margin: 0 40px;
+  position: relative;
   span {
     font-size: 19px;
     white-space: nowrap;
@@ -132,14 +134,37 @@ export const TweetarButton = styled(ButtonContainer)`
     height: 36px;
   }
 `
+export const TweetarButton2 = styled(ButtonContainer)`
+  position: fixed;
+  background: ${cores.cinza_escuro};
+  width: 45px;
+  height: 45px;
+  bottom: 40px;
+  right: 25px;
+  font-size: 50px;
+  border-radius: 50px;
+  display: none;
+  &:hover {
+    background: ${cores.azul};
+    color: ${cores.cinza_escuro};
+  }
+
+  @media (max-width: 550px) {
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 28px;
+  }
+`
+
 export const Bottomside = styled.div`
   flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
-  width: 90%;
-  padding: 8px;
+  width: 95%;
+  padding: 12px;
   margin-bottom: 25px;
 
   border-radius: 30px;
@@ -155,11 +180,23 @@ export const Bottomside = styled.div`
   }
 `
 export const Avatar = styled.div`
-  flex-shrink: 0;
-  background: ${cores.branca};
   width: 40px;
   height: 40px;
   border-radius: 50%;
+  flex-shrink: 0;
+  background: red;
+
+  div {
+    background: transparent;
+  }
+
+  img {
+    object-fit: cover;
+    border-radius: 20px;
+    width: 40px;
+    height: 40px;
+  }
+
   @media (max-width: 1000px) {
     display: none;
   }
@@ -207,6 +244,7 @@ export const Modal = styled.div`
   justify-content: center;
   display: none;
   background-color: rgba(255, 255, 255, 0.7);
+
   &.is-visible {
     display: flex;
     flex-direction: column;
@@ -225,6 +263,18 @@ export const ModalContent = styled.div`
   border-radius: 25px;
   position: relative;
   z-index: 1;
+  width: 50%;
+
+  @media (max-width: 1000px) {
+    width: 70%;
+  }
+  @media (max-width: 600px) {
+    width: 95%;
+  }
+  @media (max-width: 334px) {
+    flex-shrink: 0;
+    width: 330px;
+  }
 `
 
 const IconCSSClose = css`
@@ -241,7 +291,6 @@ const IconCSSClose = css`
   }
 `
 export const Icon = styled.div`
-  background: red;
   width: 20px;
   margin-left: 10px;
   margin-top: 10px;
@@ -252,6 +301,7 @@ export const Icon = styled.div`
 export const Form = styled.div`
   background: transparent;
   border-radius: 50px;
+  height: 220px;
 `
 export const IconClose = styled(Close)`
   ${IconCSSClose}
@@ -270,40 +320,56 @@ export const Content = styled.div`
 `
 
 export const AvatarPost = styled.div`
-  background: white;
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  margin-top: 10px;
+  flex-shrink: 0;
+  div {
+    background: transparent;
+  }
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 25px;
+  }
 `
 
 export const InputGroup = styled.div`
   margin-top: 10px;
   background: ${cores.cinza_escuro};
+  width: 100%;
   textarea {
     border: none;
     background: ${cores.cinza_escuro};
     margin-left: 9px;
     resize: none;
     padding: 2px;
+    width: 100%;
+    height: 100px;
   }
 `
 
-export const Test = styled.div`
+export const ImagePost = styled.div`
   display: flex;
-  justify-content: space-between;;
-  background: ${cores.cinza_escuro};
+  justify-content: space-between;
+  background: transparent;
   margin-right: 24px;
   margin-left: 24px;
   padding: 16px;
+
+  @media (max-width: 442px) {
+    margin-right: 1px;
+    margin-left: 2px;
+    flex-direction: column;
   }
 `
 
 export const Choose = styled.div`
   background: ${cores.cinza_escuro};
-  input {
-    display: none;
-  }
+  // input {
+  //   display: none;
+  // }
   label {
     background: ${cores.cinza_escuro};
   }
@@ -320,4 +386,9 @@ export const ButtonPost = styled.button`
   width: 80px;
   height: 36px;
   background: ${cores.cinza_escuro};
+  @media (max-width: 442px) {
+    margin-top: 8px;
+    display: flex;
+    align-itens: center;
+  }
 `

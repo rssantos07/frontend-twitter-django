@@ -32,16 +32,16 @@ export const Avatar = styled.div`
   border-radius: 50%;
   background: ${cores.branca};
   margin: 3px 10px 0 15px;
-  overflow: hidden; /* Adicionado para esconder qualquer conteúdo que exceda os limites do contêiner */
+  overflow: hidden;
   @media (min-width: 400px) {
     margin: 3px 10px 0 4px;
   }
 
   img {
-    width: 100%; /* Adicionado para garantir que a imagem ocupe todo o espaço disponível */
-    height: auto; /* Adicionado para garantir que a altura seja ajustada proporcionalmente */
-    border-radius: 50%; /* Movido da div para a imagem para aplicar o border-radius corretamente */
-    object-fit: cover; /* Adicionado para garantir que a imagem cubra o contêiner sem distorção */
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+    object-fit: cover;
   }
 `
 
@@ -78,64 +78,6 @@ export const Dot = styled.span`
   background: #fff;
   margin: 0 8px 0 8px;
 `
-
-export const Description = styled.textarea`
-  font-size: 14px;
-  margin-top: 4px;
-  width: 100%;\
-  resize: none;
-  border: none;
-  background-color: transparent;
-  display: block;
-`
-
-export const ImageContent = styled.div`
-  margin-right: 18px;
-  width: 100%;
-  height: 100%;
-  background: ${cores.cinza};
-  margin-top: 12px;
-  border-radius: 14px;
-  cursor: pointer;
-  flex-shrink: 0;
-  overflow: hidden;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  max-width: 1193px; /* Adicionado para limitar a largura máxima */
-  max-height: 800px; /* Adicionado para limitar a altura máxima */
-  img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    border-radius: 14px;
-  }
-
-  &:hover {
-    opacity: 0.7;
-  }
-`
-
-export const Icons = styled.div`
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  margin: 11px auto 0;
-
-  @media (max-width: 400px) {
-    width: 80%;
-  }
-  @media (min-width: 400px) {
-    width: 63%;
-  }
-`
-
-export const Status = styled.div`
-  margin-left: 25px;
-  cursor: pointer;
-`
-
 const IconCSS = css`
   width: 31px;
   height: 31px;

@@ -1,13 +1,16 @@
 import { Container, Tab } from './styles'
 
-import ListaTweets from '../../containers/ListaTweets'
+import { useGetPostsQuery } from '../../services/api'
+import PostsList from '../../containers/ListaPosts'
 
 const Feed = () => {
+  const { data: posts } = useGetPostsQuery()
+
   return (
     <>
       <Container>
         <Tab>Tweets</Tab>
-        <ListaTweets />
+        {posts && <PostsList posts={posts} />}
       </Container>
     </>
   )

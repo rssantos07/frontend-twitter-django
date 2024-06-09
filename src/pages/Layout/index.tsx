@@ -1,13 +1,24 @@
 import Aside from '../../components/Aside'
-import Main from '../../components/Main'
+
+import { Container, Principal } from './styles'
 import MenuBar from '../../components/MenuBar'
-import { Container } from './styles'
+
+import Feed from '../../components/Feed'
+import Profile from '../../components/Profile'
+import { useGetTokenDataQuery } from '../../services/api'
 
 const Layout = () => {
+  const { data: profile } = useGetTokenDataQuery()
+
   return (
     <Container>
-      <MenuBar />
-      <Main />
+      {profile && <MenuBar profile={profile} />}
+
+      <Principal>
+        {profile && <Profile profile={profile} />}
+        <Feed />
+      </Principal>
+
       <Aside />
     </Container>
   )

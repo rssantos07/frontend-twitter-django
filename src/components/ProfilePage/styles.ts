@@ -33,10 +33,10 @@ export const Avatar = styled.div`
 
   /* Estilo para a imagem dentro da div Avatar */
   img {
-    width: 100%; /* Ajusta a largura da imagem para preencher a div */
-    height: 100%; /* Ajusta a altura da imagem para preencher a div */
-    object-fit: cover; /* Redimensiona a imagem para preencher a div, mantendo sua proporção */
-    border-radius: 50%; /* Mantém a borda arredondada mesmo para a imagem */
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
   }
 `
 

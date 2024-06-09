@@ -1,50 +1,50 @@
-import { auth } from '../../services/firebase'
-import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth'
-import { useState } from 'react'
-import Layout from '../../pages/Layout'
-import { useFormik } from 'formik'
+import { SyntheticEvent, useState } from 'react'
+
 import { Container, InputGroup, Row, Logotype, Content } from './styles'
 import logo from '../../assets/images/icons8-twitter-480.svg'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [signInWithEmailAndPassword, user, loading, error] =
-    useSignInWithEmailAndPassword(auth)
 
-  async function handleSignIn(e: React.FormEvent<HTMLFormElement>) {
+  const navigate = useNavigate()
+
+  const submit = async (e: SyntheticEvent) => {
     e.preventDefault()
-    signInWithEmailAndPassword(email, password)
-  }
 
-  const form = useFormik({
-    initialValues: {
-      email: '',
-      password: ''
-    },
-    onSubmit: (values) => {
-      console.log(values)
+    try {
+      const response = await fetch(
+        'https://rssantos07.pythonanywhere.com/api/token/',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          credentials: 'include',
+          body: JSON.stringify({
+            email,
+            password
+          })
+        }
+      )
+
+      if (!response.ok) {
+        alert('usuário ou senha incorretos')
+        throw new Error(`HTTP error! status: ${response.status}`)
+      }
+
+      const data = await response.json()
+      localStorage.setItem('access_token', data.access)
+      localStorage.setItem('refresh_token', data.refresh)
+      console.log('Login successful')
+
+      navigate('/layout')
+    } catch (error) {
+      console.error('Failed to login:', error)
     }
-  })
+  }
 
-  if (error) {
-    return (
-      <div>
-        <p>Error: {error.message}</p>
-      </div>
-    )
-  }
-  if (loading) {
-    return <p>Loading...</p>
-  }
-  if (user) {
-    return (
-      <div>
-        <Layout />
-      </div>
-    )
-  }
   return (
     <Container>
       <Logotype>
@@ -53,7 +53,7 @@ const Login = () => {
       <Content>
         <h1>Acontecendo Agora</h1>
         <Row>
-          <form onSubmit={form.handleSubmit}>
+          <form onSubmit={submit}>
             <InputGroup>
               <label htmlFor="email">E-mail :</label>
               <input
@@ -71,9 +71,7 @@ const Login = () => {
               />
             </InputGroup>
 
-            <button onClick={() => signInWithEmailAndPassword(email, password)}>
-              Sign In
-            </button>
+            <button type="submit">Sign In</button>
             <p>
               Ainda não é um escrito? <Link to="/signup">Inscreva-se</Link>
             </p>

@@ -6,18 +6,24 @@ export const Container = styled.div`
   align-items: center;
   justify-content: space-between;
   height: 100vh;
+  @media (max-width: 1000px) {
+    alignt-text: center;
+  }
 `
 export const Logotype = styled.div`
   border-right: 1px solid ${cores.cinza_escuro};
   margin-right 500px;
   width: 45%;
+  @media (max-width: 1000px) {
+    display: none;
+  }
 `
 
 export const Content = styled.div`
   display: flex;
   flex-direction: column;
   width: 45%;
-  align-itens: left;
+  align-itens: flex-start;
 
   h1 {
     margin-top: -60px;
@@ -25,6 +31,15 @@ export const Content = styled.div`
     font-size: 64px;
     font-weight: 700;
     white-space: nowrap;
+    @media (max-width: 460px) {
+      white-space: wrap;
+      padding: 18px;
+      font-size: 48px;
+    }
+  }
+  @media (max-width: 1000px) {
+    width: 100%;
+    align-items: center;
   }
 `
 export const Row = styled.div`
@@ -36,10 +51,13 @@ export const Row = styled.div`
   align-items: center;
   justify-content: center;
   width: 75%;
+  @media (max-width: 460px) {
+    width: 95%;
+  }
   form {
     display: flex;
     flex-direction: column;
-    
+
   }
   button {
     background: ${cores.azul};

@@ -80,3 +80,8 @@ export const Button = styled(ButtonContainer)`
   height: 36px;
   margin-top: 20px;
 `
+export const Error = styled.h3`
+  font-size: 16px;
+  margin-left: 8px;
+  background: ${cores.cinza_escuro};
+`
