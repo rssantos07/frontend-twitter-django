@@ -105,7 +105,7 @@ const MenuBar = ({ profile }: Props) => {
               <div key={index}>
                 <img
                   src={
-                    'https://rssantos07.pythonanywhere.com/media/' +
+                    'https://rssantos07.pythonanywhere.com/' +
                     img.token_data.image
                   }
                 />
@@ -135,7 +135,7 @@ const MenuBar = ({ profile }: Props) => {
                   <div key={index}>
                     <img
                       src={
-                        'https://rssantos07.pythonanywhere.com/media/' +
+                        'https://rssantos07.pythonanywhere.com/' +
                         img.token_data.image
                       }
                     />
