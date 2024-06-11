@@ -57,7 +57,7 @@ const Post = ({
       </S.Body>
       <S.Description>{mensagem}</S.Description>
       <S.ImageContent>
-        <img src={imagem} alt="" />
+        <img src={imagem} alt="imagem postada" />
       </S.ImageContent>
       <S.Icons>
         <S.Status>
