@@ -4,7 +4,11 @@ import logo from '../../assets/images/icons8-twitter-48.svg'
 
 import { useState } from 'react'
 
-import { useCreatePostMutation, useLogoutMutation } from '../../services/api'
+import {
+  useCreatePostMutation,
+  useGetPostsQuery,
+  useLogoutMutation
+} from '../../services/api'
 import { useNavigate } from 'react-router-dom'
 import { createPortal } from 'react-dom'
 
@@ -19,29 +23,28 @@ const MenuBar = ({ profile }: Props) => {
   const [imagem, setImagem] = useState<File | null>(null)
   const [createPost, { isSuccess }] = useCreatePostMutation()
   const [logout] = useLogoutMutation()
+  const { refetch } = useGetPostsQuery()
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
     const formData = new FormData()
     formData.append('mensagem', mensagem)
     if (imagem) {
       formData.append('imagem', imagem)
     }
-
-    // Exibir os dados do FormData no console
-    for (const pair of formData.entries()) {
-      console.log(pair[0] + ', ' + pair[1])
-    }
-
     try {
-      console.log('Enviando dados:', formData) // Adiciona esta linha para verificar os dados do FormData
       await createPost(formData).unwrap()
-      if (isSuccess) {
-        setMensagem('')
-        setImagem(null)
-        console.log('Post criado com sucesso')
-      }
     } catch (error) {
-      console.error('Erro ao criar post:', error) // Adiciona esta linha para imprimir a mensagem de erro
+      console.error('Erro ao criar post:')
+    }
+    if (isSuccess) {
+      setModalOn(false)
+      setMensagem('')
+      setImagem(null)
+      setTimeout(() => {
+        window.location.reload() // Recarrega a página após 3 segundos
+      }, 3000) // 3000 milissegundos = 3 segundos
+      console.log('Post criado com sucesso')
     }
   }
 

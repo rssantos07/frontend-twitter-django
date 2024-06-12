@@ -1,6 +1,7 @@
 import * as S from './styles'
 import logo from '../../assets/images/icons8-twitter-16.svg'
-import { useDeletePostMutation } from '../../services/api'
+import { useDeletePostMutation, useGetPostsQuery } from '../../services/api'
+import { useNavigate } from 'react-router-dom'
 
 interface Post {
   id: number
@@ -25,6 +26,9 @@ const Post = ({
   formatted_created_at
 }: Post) => {
   const [deletePost, { isLoading }] = useDeletePostMutation()
+  const { data: posts, refetch } = useGetPostsQuery()
+  const navigate = useNavigate()
+
   const handleDelete = async () => {
     try {
       await deletePost(id).unwrap()
@@ -57,7 +61,7 @@ const Post = ({
       </S.Body>
       <S.Description>{mensagem}</S.Description>
       <S.ImageContent>
-        <img src={imagem} alt="imagem postada" />
+        <img src={imagem} />
       </S.ImageContent>
       <S.Icons>
         <S.Status>
