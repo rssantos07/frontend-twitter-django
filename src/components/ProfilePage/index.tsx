@@ -56,7 +56,7 @@ const ProfilePage = ({ username, full_name, bio, image }: TokenData) => {
         <S.Banner>
           <S.Avatar>
             <img
-              src={'https://rssantos07.pythonanywhere.com/' + image}
+              src={'https://rssantos07.pythonanywhere.com/media/' + image}
               alt={'Imagem de ' + username}
             />
           </S.Avatar>
