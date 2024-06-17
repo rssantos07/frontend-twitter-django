@@ -23,7 +23,6 @@ const MenuBar = ({ profile }: Props) => {
   const [imagem, setImagem] = useState<File | null>(null)
   const [createPost, { isSuccess }] = useCreatePostMutation()
   const [logout] = useLogoutMutation()
-  const { refetch } = useGetPostsQuery()
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -41,9 +40,6 @@ const MenuBar = ({ profile }: Props) => {
       setModalOn(false)
       setMensagem('')
       setImagem(null)
-      setTimeout(() => {
-        window.location.reload() // Recarrega a página após 3 segundos
-      }, 3000) // 3000 milissegundos = 3 segundos
       console.log('Post criado com sucesso')
     }
   }
