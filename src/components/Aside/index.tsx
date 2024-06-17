@@ -7,25 +7,25 @@ type Article = {
   url: string
 }
 const Aside = () => {
-  // const [articles, setArticles] = useState<Article[]>([])
-  // const [error, setError] = useState<string | null>(null)
+  const [articles, setArticles] = useState<Article[]>([])
+  const [error, setError] = useState<string | null>(null)
 
-  // useEffect(() => {
-  //   fetch(
-  //     'https://newsapi.org/v2/top-headlines?country=br&apiKey=7c13bc9a17564a98a0f5a35e2ac8ab26'
-  //   )
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       setArticles(data.articles.slice(-3))
-  //       setError(null)
-  //     })
-  //     .catch((error) => {
-  //       console.error('Erro ao fazer a requisição:', error)
-  //       setError(
-  //         'Erro na importação da API, api é paga e tem numero máximo de acesso por dia'
-  //       )
-  //     })
-  // })
+  useEffect(() => {
+    fetch(
+      'https://newsapi.org/v2/top-headlines?country=br&apiKey=7c13bc9a17564a98a0f5a35e2ac8ab26'
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        setArticles(data.articles.slice(-3))
+        setError(null)
+      })
+      .catch((error) => {
+        console.error('Erro ao fazer a requisição:', error)
+        setError(
+          'Erro na importação da API, api é paga e tem numero máximo de acesso por dia'
+        )
+      })
+  })
 
   return (
     <S.Container>
@@ -39,7 +39,7 @@ const Aside = () => {
           Em breve
         </S.Button>
       </S.Sign>
-      {/* <S.Moment>
+      <S.Moment>
         <S.Title>O que está acontecendo</S.Title>
         <S.Line></S.Line>
         {error ? (
@@ -57,7 +57,7 @@ const Aside = () => {
             </S.Subject>
           ))
         )}
-      </S.Moment> */}
+      </S.Moment>
     </S.Container>
   )
 }
